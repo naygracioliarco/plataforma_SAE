@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
+import { volumes } from '../data/volumes'
 
-const menuItems = [
-  { label: 'Volume 1', id: 'volume-1' },
-  { label: 'Volume 2', id: 'volume-2' },
-  { label: 'Volume 3', id: 'volume-3' },
-]
+const menuItems = volumes.map((v) => ({
+  label: v.sectionTitle,
+  id: `volume-${v.id}`,
+}))
 
 export default function Nav() {
   const [activeId, setActiveId] = useState('volume-1')

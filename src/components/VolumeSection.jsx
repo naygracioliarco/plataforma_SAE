@@ -30,7 +30,7 @@ export default function VolumeSection({ volume, onOpenModal }) {
     >
       <div className="volume-header">
         <span className="volume-badge">{volume.badge}</span>
-        <h2 className="volume-section-title">Livros Digitais</h2>
+        <h2 className="volume-section-title">{volume.sectionTitle}</h2>
         <p className="volume-desc">{volume.description}</p>
       </div>
 
@@ -69,7 +69,7 @@ export default function VolumeSection({ volume, onOpenModal }) {
 
       {/* Botões */}
       <div className="volume-actions">
-        <Link to={`/volume/${volume.id}`} className="btn btn-secondary">
+        <Link to={`/volume/${volume.volumeId ?? volume.id}`} className="btn btn-secondary">
           Ver página completa
         </Link>
       </div>

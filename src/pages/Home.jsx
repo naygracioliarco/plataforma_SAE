@@ -27,7 +27,7 @@ export default function Home() {
           onClose={() => setOpenModalId(null)}
           title={`${volume.badge} — Capítulos`}
           chapters={volume.chapters}
-          volumeId={volume.id}
+          volumeId={volume.volumeId ?? volume.id}
         />
       )}
       <BackToTop />
