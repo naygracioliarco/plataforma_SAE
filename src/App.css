@@ -1,0 +1,380 @@
+/* Paleta SAE Digital — variáveis e estilos globais */
+
+:root {
+  /* Fundo (azul índigo da marca) */
+  --bg-dark: #2D288E;
+  --bg-card: #3D3799;
+  /* Destaques da logo: amarelo/laranja, azul, roxo, ciano, verde */
+  --accent: #FFC107;
+  --accent-soft: rgba(255, 193, 7, 0.2);
+  --accent-blue: #2196F3;
+  --accent-purple: #9C27B0;
+  --accent-cyan: #00BCD4;
+  --accent-green: #4CAF50;
+  /* Texto */
+  --text: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.8);
+  --border: rgba(255, 193, 7, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Hero — gradiente inspirado na forma multicolorida EVOLUIR (verde, azul, amarelo, roxo) */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 30%, rgba(76, 175, 80, 0.15), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 70% 40%, rgba(33, 150, 243, 0.12), transparent 45%),
+    radial-gradient(ellipse 60% 45% at 30% 60%, rgba(255, 193, 7, 0.12), transparent 45%),
+    radial-gradient(ellipse 65% 50% at 50% 70%, rgba(156, 39, 176, 0.1), transparent 50%),
+    var(--bg-dark);
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  font-weight: 300;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.scroll-hint svg {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* Volume sections */
+section.volume {
+  min-height: 100vh;
+  padding: 4rem 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.volume.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.volume-header {
+  margin-bottom: 2rem;
+}
+
+.volume-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.volume h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.volume-desc {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 560px;
+}
+
+.volume-media {
+  width: 100%;
+  max-width: 720px;
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume-media video,
+.volume-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.volume-media .placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.volume-media .placeholder svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+}
+
+.volume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #1a1a2e;
+}
+
+.btn-primary:hover {
+  background: #FFB300;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  max-width: 480px;
+  width: 100%;
+  max-height: 85vh;
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.open .modal {
+  transform: scale(1);
+}
+
+.modal-header {
+  padding: 1.5rem 1.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--text);
+}
+
+.modal-body {
+  padding: 0 1.5rem 1.5rem;
+  overflow-y: auto;
+  max-height: 55vh;
+}
+
+.chapters-list {
+  list-style: none;
+}
+
+.chapters-list li {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background 0.2s;
+}
+
+.chapters-list li:hover {
+  background: var(--accent-soft);
+}
+
+.chapters-list .chapter-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-footer .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.detail-link {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.detail-link a {
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.detail-link a:hover {
+  text-decoration: underline;
+}
+
+/* Página de detalhe do volume */
+.detalhe-page {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.detalhe-page .back {
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.detalhe-page h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.detalhe-page p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 600px;
+}
