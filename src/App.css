@@ -512,10 +512,12 @@ section.volume.visible {
   text-decoration: underline;
 }
 
-/* Página de detalhe do volume */
+/* Página de detalhe (Livros Digitais / Objetos Interativos / Realidade Aumentada) */
 .detalhe-page {
   min-height: 100vh;
   padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .detalhe-page .back {
@@ -523,16 +525,55 @@ section.volume.visible {
   font-size: 0.95rem;
 }
 
-.detalhe-page h1 {
+.detalhe-page-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
 }
 
-.detalhe-page p {
+.detalhe-page-desc {
   color: var(--text-muted);
   line-height: 1.7;
-  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+/* Blocos por segmento */
+.detalhe-segmentos {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.segmento {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.segmento-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--accent);
+}
+
+.segmento-conteudo {
+  padding: 1.5rem;
+}
+
+.segmento-placeholder {
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.segmento-placeholder strong {
+  color: var(--text);
 }
 
 /* Botão voltar ao topo */
