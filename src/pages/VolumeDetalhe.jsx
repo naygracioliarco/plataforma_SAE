@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { volumes, SEGMENTOS, COMPONENTES_CURRICULARES } from '../data/volumes'
 
-function FiltroBloco({ titulo, opcoes, valorAtivo, onChange, aberto, onToggle }) {
+function FiltroBloco({ titulo, opcoes, valorAtivo, onChange, aberto, onToggle, comScroll }) {
   return (
     <div className="filtro-bloco">
       <button
@@ -15,7 +15,7 @@ function FiltroBloco({ titulo, opcoes, valorAtivo, onChange, aberto, onToggle })
         <span className="filtro-bloco-chevron" aria-hidden>{aberto ? '▲' : '▼'}</span>
       </button>
       {aberto && (
-        <div className="filtro-bloco-opcoes">
+        <div className={`filtro-bloco-opcoes ${comScroll ? 'filtro-bloco-opcoes--scroll' : ''}`}>
           {opcoes.map((opcao) => (
             <label
               key={opcao}
@@ -75,6 +75,7 @@ export default function VolumeDetalhe() {
           onChange={setComponenteAtivo}
           aberto={componenteAberto}
           onToggle={() => setComponenteAberto((a) => !a)}
+          comScroll
         />
       </aside>
 

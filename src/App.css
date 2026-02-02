@@ -581,6 +581,33 @@ section.volume.visible {
 
 .filtro-bloco-opcoes {
   padding: 0 1.25rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* No máximo 4 itens visíveis; o restante com scroll */
+.filtro-bloco-opcoes--scroll {
+  max-height: 10.5rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.filtro-bloco-opcoes--scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filtro-bloco-opcoes--scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+}
+
+.filtro-bloco-opcoes--scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.filtro-bloco-opcoes--scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .filtro-opcao {
@@ -744,7 +771,7 @@ section.volume.visible {
     padding: 1rem 0;
   }
 
-  .filtro-bloco-opcoes {
+  .filtro-bloco-opcoes:not(.filtro-bloco-opcoes--scroll) {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
@@ -754,6 +781,10 @@ section.volume.visible {
     flex: 1 1 auto;
     min-width: 120px;
     padding: 0.5rem 0.75rem;
+  }
+
+  .filtro-bloco-opcoes--scroll .filtro-opcao {
+    min-width: 0;
   }
 
   .detalhe-main {
