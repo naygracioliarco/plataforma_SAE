@@ -69,13 +69,6 @@ export default function VolumeSection({ volume, onOpenModal }) {
 
       {/* Botões */}
       <div className="volume-actions">
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => onOpenModal('volume' + volume.id)}
-        >
-          Ver capítulos
-        </button>
         <Link to={`/volume/${volume.id}`} className="btn btn-secondary">
           Ver página completa
         </Link>

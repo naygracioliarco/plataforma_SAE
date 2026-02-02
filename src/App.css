@@ -104,6 +104,7 @@ a:hover {
 .nav-bar {
   position: sticky;
   top: 0;
+  margin-top: 72px;
   z-index: 100;
   padding: 1rem 2rem;
   display: flex;
@@ -532,4 +533,46 @@ section.volume.visible {
   color: var(--text-muted);
   line-height: 1.7;
   max-width: 600px;
+}
+
+/* Botão voltar ao topo */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #1a1a2e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(255, 193, 7, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+  animation: backToTopFadeIn 0.3s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 193, 7, 0.5);
+}
+
+.back-to-top svg {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes backToTopFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

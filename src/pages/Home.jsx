@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Hero from '../components/Hero'
 import VolumeSection from '../components/VolumeSection'
 import Modal from '../components/Modal'
+import BackToTop from '../components/BackToTop'
 import { volumes } from '../data/volumes'
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
           volumeId={volume.id}
         />
       )}
+      <BackToTop />
     </>
   )
 }
