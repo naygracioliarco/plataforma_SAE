@@ -1,10 +1,26 @@
 // Segmentos padrão em cada página de detalhe
 export const SEGMENTOS = [
-  'Ensino Infantil',
+  'Educação Infantil',
   'Anos Iniciais',
   'Anos Finais',
-  'Ensino Médio',
+  'EM',
   'Aprova+',
+]
+
+// Componentes curriculares (segundo filtro)
+export const COMPONENTES_CURRICULARES = [
+  'Arte',
+  'Biologia',
+  'Ciências',
+  'Educação Física',
+  'Física',
+  'Química',
+  'Filosofia',
+  'História',
+  'Geografia',
+  'Inglês',
+  'Língua Portuguesa',
+  'Matemática',
 ]
 
 const volume3Chapters = [

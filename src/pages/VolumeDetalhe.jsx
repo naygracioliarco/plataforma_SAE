@@ -1,11 +1,51 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { volumes, SEGMENTOS } from '../data/volumes'
+import { volumes, SEGMENTOS, COMPONENTES_CURRICULARES } from '../data/volumes'
+
+function FiltroBloco({ titulo, opcoes, valorAtivo, onChange, aberto, onToggle }) {
+  return (
+    <div className="filtro-bloco">
+      <button
+        type="button"
+        className="filtro-bloco-header"
+        onClick={onToggle}
+        aria-expanded={aberto}
+      >
+        <span className="filtro-bloco-titulo">{titulo}</span>
+        <span className="filtro-bloco-chevron" aria-hidden>{aberto ? '▲' : '▼'}</span>
+      </button>
+      {aberto && (
+        <div className="filtro-bloco-opcoes">
+          {opcoes.map((opcao) => (
+            <label
+              key={opcao}
+              className={`filtro-opcao ${valorAtivo === opcao ? 'filtro-opcao--ativo' : ''}`}
+            >
+              <input
+                type="radio"
+                name={titulo.replace(/\s/g, '-')}
+                value={opcao}
+                checked={valorAtivo === opcao}
+                onChange={() => onChange(opcao)}
+                className="filtro-opcao-input"
+              />
+              <span className="filtro-opcao-radio" aria-hidden />
+              <span className="filtro-opcao-texto">{opcao}</span>
+            </label>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default function VolumeDetalhe() {
   const { id } = useParams()
   const volume = volumes.find((v) => v.volumeId === id || v.id === id)
   const [segmentoAtivo, setSegmentoAtivo] = useState(SEGMENTOS[0])
+  const [componenteAtivo, setComponenteAtivo] = useState(COMPONENTES_CURRICULARES[0])
+  const [segmentosAberto, setSegmentosAberto] = useState(true)
+  const [componenteAberto, setComponenteAberto] = useState(true)
 
   if (!volume) {
     return (
@@ -20,34 +60,33 @@ export default function VolumeDetalhe() {
   return (
     <div className="detalhe-page">
       <aside className="detalhe-sidebar">
-        <div className="detalhe-filtros-header">
-          <span className="detalhe-filtros-icon" aria-hidden>▾</span>
-          <h2 className="detalhe-filtros-titulo">Filtros</h2>
-        </div>
-        <nav className="detalhe-filtros-nav" aria-label="Segmentos">
-          {SEGMENTOS.map((segmento) => (
-            <button
-              key={segmento}
-              type="button"
-              className={`detalhe-filtro-item ${segmentoAtivo === segmento ? 'detalhe-filtro-item--ativo' : ''}`}
-              onClick={() => setSegmentoAtivo(segmento)}
-            >
-              <span className="detalhe-filtro-item-texto">{segmento}</span>
-              <span className="detalhe-filtro-item-chevron" aria-hidden>▼</span>
-            </button>
-          ))}
-        </nav>
+        <FiltroBloco
+          titulo="Segmentos"
+          opcoes={SEGMENTOS}
+          valorAtivo={segmentoAtivo}
+          onChange={setSegmentoAtivo}
+          aberto={segmentosAberto}
+          onToggle={() => setSegmentosAberto((a) => !a)}
+        />
+        <FiltroBloco
+          titulo="Componente Curricular"
+          opcoes={COMPONENTES_CURRICULARES}
+          valorAtivo={componenteAtivo}
+          onChange={setComponenteAtivo}
+          aberto={componenteAberto}
+          onToggle={() => setComponenteAberto((a) => !a)}
+        />
       </aside>
 
       <main className="detalhe-main">
         <Link to="/" className="back">← Voltar para Inovações por Volume</Link>
 
         <section className="detalhe-conteudo">
-          <h1 className="detalhe-conteudo-titulo">{segmentoAtivo}</h1>
+          <h1 className="detalhe-conteudo-titulo">{segmentoAtivo} — {componenteAtivo}</h1>
           <div className="detalhe-conteudo-corpo">
             <p className="segmento-placeholder">
-              Conteúdo de <strong>{segmentoAtivo}</strong> para {volume.sectionTitle}. 
-              Inclua aqui os materiais, links ou recursos específicos deste segmento.
+              Conteúdo de <strong>{segmentoAtivo}</strong> e <strong>{componenteAtivo}</strong> para {volume.sectionTitle}. 
+              Inclua aqui os materiais, links ou recursos específicos.
             </p>
           </div>
         </section>
